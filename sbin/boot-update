@@ -157,7 +157,15 @@ def update(config, success, messages):
 	# grub-legacy.py, lilo.py):
 
 	extname = "funtoo.boot.extensions.{gen}".format(gen = generate)
-	__import__(extname)
+	try:
+		__import__(extname)
+	except ImportError as e:
+		success = False
+		messages.append(["fatal", e])
+	
+	if not success:
+		cleanup(success, messages)
+
 	extmodule = sys.modules[extname]
 
 	# Create Boot Loader Extension object: and regenerate config file
