@@ -10,7 +10,7 @@ class DefaultBootConfigFile(config.ConfigFile):
 		return None
 
 	def __init__(self,fn="/etc/boot.conf.defaults",existing=True):
-		self.builtins = ["boot", "default", "color", "grub", "grub-legacy", "lilo"]
+		self.builtins = ["boot", "default", "color", "grub", "grub-legacy", "lilo", "syslinux"]
 		config.ConfigFile.__init__(self,fn,existing)
 
 
@@ -25,7 +25,7 @@ class BootConfigFile(config.ConfigFile):
 	def __init__(self,fn="/etc/boot.conf",existing=True):
 		# builtins is our list of all those sections that we recognize as having config values and
 		# not boot entries.
-		self.builtins = ["boot", "display", "default", "altboot", "color", "grub", "grub-legacy", "lilo"]
+		self.builtins = ["boot", "display", "default", "altboot", "color", "grub", "grub-legacy", "lilo", "syslinux" ]
 		config.ConfigFile.__init__(self,fn,existing)
 		self.parent=DefaultBootConfigFile()
 
@@ -38,7 +38,8 @@ class BootConfigFile(config.ConfigFile):
 				"default" : ["scan", "kernel", "initrd", "params", "type", "xenkernel", "xenparams"],
 				"grub" : ["dir", "file", "grub-mkdevicemap", "grub-probe", "font_src"],
 				"grub-legacy" : ["dir", "file"],
-				"lilo" : ["file", "bin", "gparams"]
+				"lilo" : ["file", "bin", "gparams"],
+				"syslinux" : ["file", "bin", "prompt"]
 		}
 		for section in self.sectionData.keys():
 			if section not in validmap.keys():

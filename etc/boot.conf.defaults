@@ -41,3 +41,9 @@ lilo {
 	bin /sbin/lilo
 	gparams install=menu prompt
 }
+
+syslinux {
+	file extlinux.conf.test
+	bin /sbin/extlinux
+	prompt 1
+}
