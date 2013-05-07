@@ -43,7 +43,7 @@ lilo {
 }
 
 syslinux {
-	file extlinux.conf.test
+	file extlinux.conf
 	bin /sbin/extlinux
 	prompt 1
 }
